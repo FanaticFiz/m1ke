@@ -1,21 +1,23 @@
 package com.aspiration.handlers;
 
-import lombok.Data;
 import lombok.extern.log4j.Log4j;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
 @Log4j
 public class DirectoryHandler {
-	private String path;
+	private String exceptionDir = ".m1ke";
+	private List<String> foundFiles = new ArrayList<>();
 
-	public List<String> findAll(String path) {
-		log.info("Try find files in: " + path);
+	public DirectoryHandler(String exceptionDir) {
+		this.exceptionDir = exceptionDir;
+	}
 
-		List<String> foundFiles = new ArrayList<>();
+	public List<String> findAllFiles(String path) {
+		log.debug("Try find files in: " + path);
+
 		File[] files = null;
 		try {
 			File file = new File(path);
@@ -32,13 +34,21 @@ public class DirectoryHandler {
 					foundFiles.add(path + "\\" + file.getName());
 				} else {
 					log.debug(file.getName() + " is a directory");
-					findAll(path + "\\" + file.getName());
+					if (!exceptionDir.equals(file.getName())) {
+						findAllFiles(path + "\\" + file.getName());
+					}
 				}
 			}
 		} else {
 			log.info("empty or wrong directory");
 		}
 		return foundFiles;
+	}
+
+	public List<String> difference(List<String> oldFiles, List<String> newFiles) {
+		log.debug("Try find difference");
+
+		return null;
 	}
 
 }
