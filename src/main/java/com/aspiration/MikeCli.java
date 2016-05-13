@@ -9,7 +9,6 @@ public class MikeCli {
         args = commandLineArgs;
 
         if (isValidCommand(args[1])) {
-            System.out.println("This is valid command");
             executeCommand();
         } else {
             throw new ParseException("command could not be found");
@@ -17,11 +16,7 @@ public class MikeCli {
     }
 
     private void executeCommand() {
-        System.out.println("Found command in ENUM");
-        System.out.println("This is executeCommand()");
-
         MikeCommand command = MikeCommand.getCommand(args[1]);
-        System.out.println(command);
         Mike mike = new Mike();
 
         switch (command) {
@@ -35,8 +30,6 @@ public class MikeCli {
     }
 
     private boolean isValidCommand(String command) {
-        System.out.println("isValidCommand");
-        System.out.println(MikeCommand.containsCommand(command));
         return MikeCommand.containsCommand(command);
     }
 
