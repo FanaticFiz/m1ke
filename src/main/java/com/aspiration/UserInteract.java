@@ -22,7 +22,6 @@ public class UserInteract {
             args = line.split(" ");
 
             if (isMikeCommand(args[0])) {
-                System.out.println("IS MIKE COMMAND");
                 cli.parse(args);
                 init();
             } else {
