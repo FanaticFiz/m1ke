@@ -22,6 +22,7 @@ public class UserInteract {
             args = line.split(" ");
 
             if (isMikeCommand(args[0])) {
+                System.out.println("IS MIKE COMMAND");
                 cli.parse(args);
                 init();
             } else {
@@ -32,17 +33,15 @@ public class UserInteract {
         } catch (IOException e) {
             System.out.println("input error");
             init();
+        } catch (ParseException e) {
+            System.out.println(e.getMessage());
+            init();
         }
 
     }
 
     public boolean isMikeCommand(String param) {
-        boolean result = false;
-
-        if ("m1ke".equals(param)) {
-            result = true;
-        }
-        return result;
+        return "m1ke".equals(param);
     }
 
 
