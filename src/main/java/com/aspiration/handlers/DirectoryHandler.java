@@ -45,8 +45,21 @@ public class DirectoryHandler {
 		return foundFiles;
 	}
 
-	public List<String> difference(List<String> oldFiles, List<String> newFiles) {
+	public List<String> difference(List<String> firstFiles, List<String> secondFiles) {
 		log.debug("Try find difference");
+
+		List<String> result = new ArrayList<>();
+		for (String firstItem: firstFiles) {
+			if (!secondFiles.contains(firstItem)) {
+				result.add(firstItem);
+			}
+		}
+
+		for (String secondItem: secondFiles) {
+			if (!firstFiles.contains(secondItem)) {
+				result.add(secondItem);
+			}
+		}
 
 		return null;
 	}
