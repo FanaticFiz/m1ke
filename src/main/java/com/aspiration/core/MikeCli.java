@@ -17,7 +17,7 @@ public class MikeCli {
                 //executeCommand
                 Mike mike = new Mike();
                 switch (command) {
-                    case INTEGRATE:        mike.integrate();         break;
+                    case INTEGRATE:        mike.integrate(args[2]);  break;
                     case SAVE:             mike.save();              break;
                     case CREATE_BRANCH:    mike.createBranch();      break;
                     case GET_BRANCH:       mike.getBranch();         break;

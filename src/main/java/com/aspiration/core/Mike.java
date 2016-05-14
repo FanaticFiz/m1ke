@@ -1,8 +1,17 @@
 package com.aspiration.core;
 
+import com.aspiration.handlers.DirectoryHandler;
+
 public class Mike {
-    public void integrate() {
-        System.out.println("m1ke integrate command executing...");
+
+    public void integrate(String path) {
+        if (DirectoryHandler.isPathValid(path + ".m1ke")) {
+
+        } else {
+            // first time
+            String m1keDir = DirectoryHandler.createMikeDir(path);
+            DirectoryHandler.createDir(m1keDir + "\\master");
+        }
 
     }
 

@@ -14,7 +14,7 @@ public class DirHandlerTest {
 
 	@Before
 	public void test() {
-		directoryHandler = new DirectoryHandler("");
+		directoryHandler = new DirectoryHandler();
 		list1 = new ArrayList<>();
 		list2 = new ArrayList<>();
 	}
