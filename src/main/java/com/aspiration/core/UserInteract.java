@@ -18,24 +18,22 @@ public class UserInteract {
 
     public void init() {
         BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-        String line = "";
 
         try {
-            line = input.readLine();
-            args = line.split(" ");
+            args = input.readLine().split(" ");
 
             if (isMikeCommand(args[0])) {
                 cli.parse(args);
                 init();
             } else {
                 System.out.println("Incorrect command.");
-                System.out.println("Use one of:");
-                for (int i = 0; i < MikeCommand.values().length; i++) {
-                    System.out.println(i + ". " + MikeCommand.values()[i]);
+                System.out.print("Please use: m1ke [");
+                for (MikeCommand command: MikeCommand.values()) {
+                    System.out.print(command + ", ");
                 }
+                System.out.println("]");
                 init();
             }
-
         } catch (IOException e) {
             System.out.println("input error");
             init();
@@ -49,6 +47,5 @@ public class UserInteract {
     public boolean isMikeCommand(String param) {
         return "m1ke".equals(param);
     }
-
 
 }
