@@ -61,7 +61,7 @@ public class DirectoryHandler {
 			}
 		}
 
-		return null;
+		return result;
 	}
 
 }
