@@ -1,0 +1,16 @@
+#!/bin/bash
+
+ARGUMENTS=( "$@" )
+BASEDIR=$(dirname $0)
+#PARAMS=""
+
+#for param in "${ARGUMENTS[@]}"
+#do
+#PARAMS+="$param " 
+#done
+
+if [ "$ARGUMENTS" == "init" ] ; then
+	java -jar "$BASEDIR/m1ke.jar" "$PARAMS"
+else
+	echo "no command found"
+fi
