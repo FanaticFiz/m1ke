@@ -64,4 +64,7 @@ public class DirectoryHandler {
 		return result;
 	}
 
+	public static boolean isPathValid(String path) {
+		return new File(path).exists();
+	}
 }

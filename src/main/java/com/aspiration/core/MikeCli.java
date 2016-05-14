@@ -2,32 +2,35 @@ package com.aspiration.core;
 
 import com.aspiration.enums.MikeCommand;
 import com.aspiration.exceptions.ParseException;
+import com.aspiration.handlers.DirectoryHandler;
 
 public class MikeCli {
     private String[] args;
+    private MikeCommand command;
 
-    public void parse(final String[] commandLineArgs) throws ParseException {
+    public void executeCommand(final String[] commandLineArgs) throws ParseException {
         args = commandLineArgs;
 
         if (args.length >= 2 && isValidCommand(args[1])) {
-            executeCommand();
+            command = MikeCommand.getCommand(args[1]);
+            if (isCommandParamsValid()) {
+                //executeCommand
+                Mike mike = new Mike();
+                switch (command) {
+                    case INTEGRATE:        mike.integrate();         break;
+                    case SAVE:             mike.save();              break;
+                    case CREATE_BRANCH:    mike.createBranch();      break;
+                    case GET_BRANCH:       mike.getBranch();         break;
+                    case REMOVE_BRANCH:    mike.removeBranch();      break;
+                    case QUIT:             System.exit(0);           break;
+                }
+            } else {
+                System.out.println("Wrong command parameters");
+            }
         } else {
-            throw new ParseException("command could not be found");
+            throw new ParseException("Command could not be found");
         }
-    }
 
-    private void executeCommand() {
-        MikeCommand command = MikeCommand.getCommand(args[1]);
-        Mike mike = new Mike();
-
-        switch (command) {
-            case INTEGRATE:        mike.integrate();         ; break;
-            case SAVE:             mike.save();              ; break;
-            case CREATE_BRANCH:    mike.createBranch();      ; break;
-            case GET_BRANCH:       mike.getBranch();         ; break;
-            case REMOVE_BRANCH:    mike.removeBranch();      ; break;
-            case QUIT:                                       ; break;
-        }
     }
 
     private boolean isValidCommand(String command) {
@@ -36,5 +39,15 @@ public class MikeCli {
 
     private boolean isOption(String token) {
         return token.startsWith("-") && token.length() >= 2; //&& options.hasShortOption(token.substring(1, 2));
+    }
+
+    private boolean isCommandParamsValid() {
+        if (command == MikeCommand.INTEGRATE
+                && args.length >= 3
+                && DirectoryHandler.isPathValid(args[2])) {
+            return true;
+        }
+
+        return false;
     }
 }

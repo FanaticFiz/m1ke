@@ -23,7 +23,7 @@ public class UserInteract {
             args = input.readLine().split(" ");
 
             if (isMikeCommand(args[0])) {
-                cli.parse(args);
+                cli.executeCommand(args);
                 init();
             } else {
                 System.out.println("Incorrect command.");
