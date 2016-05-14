@@ -1,4 +1,4 @@
-package com.aspiration;
+package com.aspiration.enums;
 
 public enum MikeCommand {
     INTEGRATE("integrate"),
@@ -29,4 +29,6 @@ public enum MikeCommand {
         }
         return null;
     }
+
+
 }

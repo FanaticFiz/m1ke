@@ -1,6 +1,4 @@
-package com.aspiration;
-
-import java.util.HashMap;
+package com.aspiration.enums;
 
 public enum Options {
     MESSAGE("-m");

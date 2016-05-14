@@ -1,4 +1,7 @@
-package com.aspiration;
+package com.aspiration.core;
+
+import com.aspiration.enums.MikeCommand;
+import com.aspiration.exceptions.ParseException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -25,7 +28,11 @@ public class UserInteract {
                 cli.parse(args);
                 init();
             } else {
-                System.out.println("command not found");
+                System.out.println("Incorrect command.");
+                System.out.println("Use one of:");
+                for (int i = 0; i < MikeCommand.values().length; i++) {
+                    System.out.println(i + ". " + MikeCommand.values()[i]);
+                }
                 init();
             }
 

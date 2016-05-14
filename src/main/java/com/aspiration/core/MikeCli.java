@@ -1,6 +1,7 @@
-package com.aspiration;
+package com.aspiration.core;
 
-import java.util.*;
+import com.aspiration.enums.MikeCommand;
+import com.aspiration.exceptions.ParseException;
 
 public class MikeCli {
     private String[] args;
@@ -8,7 +9,7 @@ public class MikeCli {
     public void parse(final String[] commandLineArgs) throws ParseException {
         args = commandLineArgs;
 
-        if (isValidCommand(args[1])) {
+        if (args.length >= 2 && isValidCommand(args[1])) {
             executeCommand();
         } else {
             throw new ParseException("command could not be found");

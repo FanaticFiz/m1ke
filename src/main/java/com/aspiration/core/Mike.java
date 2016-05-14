@@ -1,4 +1,4 @@
-package com.aspiration;
+package com.aspiration.core;
 
 public class Mike {
     public void integrate() {

@@ -1,4 +1,4 @@
-package com.aspiration;
+package com.aspiration.exceptions;
 
 public class ParseException extends Exception{
     public ParseException(String message) {
