@@ -1,14 +1,14 @@
 package com.aspiration.core;
 
 import com.aspiration.enums.MikeCommand;
-import com.aspiration.exceptions.ParseException;
+import com.aspiration.exceptions.MikeParseException;
 import com.aspiration.handlers.DirectoryHandler;
 
 public class MikeCli {
     private String[] args;
     private MikeCommand command;
 
-    public void executeCommand(final String[] commandLineArgs) throws ParseException {
+    public void executeCommand(final String[] commandLineArgs) throws MikeParseException {
         args = commandLineArgs;
 
         if (args.length >= 2 && isValidCommand(args[1])) {
@@ -25,10 +25,10 @@ public class MikeCli {
                     case QUIT:             System.exit(0);           break;
                 }
             } else {
-                System.out.println("Wrong command parameters");
+                throw new MikeParseException("Wrong command parameters");
             }
         } else {
-            throw new ParseException("Command could not be found");
+            throw new MikeParseException("Command could not be found");
         }
 
     }
