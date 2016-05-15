@@ -8,8 +8,8 @@ import java.util.List;
 
 @Log4j
 public class DirectoryHandler {
-	private static String exceptionDir = ".m1ke";
 	private List<String> foundFiles = new ArrayList<>();
+	static String exceptionDir = ".m1ke";
 
 	public List<String> findAllFiles(String path) {
 		log.debug("Try find files in: " + path);
@@ -27,11 +27,11 @@ public class DirectoryHandler {
 			for (File file : files) {
 				if (file.isFile()) {
 					log.debug("Found file: " + file.getName());
-					foundFiles.add(path + "\\" + file.getName());
+					foundFiles.add(path + File.separator + file.getName());
 				} else {
 					log.debug(file.getName() + " is a directory");
 					if (!exceptionDir.equals(file.getName())) {
-						findAllFiles(path + "\\" + file.getName());
+						findAllFiles(path + File.separator + file.getName());
 					}
 				}
 			}

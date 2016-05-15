@@ -11,6 +11,7 @@ public class Application {
 
         UserInteract cliReader = new UserInteract(args[0].trim());
         cliReader.init();
-    }
+
+	}
 
 }

@@ -1,24 +1,25 @@
 package com.aspiration.handlers;
 
+import lombok.extern.log4j.Log4j;
+
 import java.io.File;
 import java.util.List;
 
+@Log4j
 public class BranchHandler {
     private List<File> branchDirectories;
     private String workingPath;
     // TODO do we need to map directories to the filelist? or do we save them?
-
-    public BranchHandler(String workingPath) {
-        this.workingPath = workingPath;
-    }
 
     public void save() {
         // ?
     }
 
     public void createBranch(String branchName) {
-        DirectoryHandler.createDir(checkDirSeparator(branchName));
-        // anything else to do?
+	    String fullPath = checkDirSeparator(workingPath + DirectoryHandler.exceptionDir) + branchName;
+	    log.debug("Create branch: " + fullPath);
+	    String dir = DirectoryHandler.createDir(fullPath);
+
     }
 
     public File getBranch(String branchName) {
@@ -36,7 +37,7 @@ public class BranchHandler {
     }
 
     public void findAll(String path) {
-        File branchDir = new File(checkDirSeparator(path) + ".m1ke");
+        File branchDir = new File(File.separator + ".m1ke");
         File[] files = null;
 
         if (branchDir.exists()) {
@@ -65,7 +66,7 @@ public class BranchHandler {
     }
 
     private String checkDirSeparator(String path) {
-        String separator = System.getProperty("path.separator)");
+        String separator = File.separator;
         if (path.endsWith(separator)) {
             return path;
         } else {
@@ -76,4 +77,8 @@ public class BranchHandler {
     public List<File> getBranchDirectories() {
         return branchDirectories;
     }
+
+	public void setWorkingPath(String workingPath) {
+		this.workingPath = workingPath;
+	}
 }

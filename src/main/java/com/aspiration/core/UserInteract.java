@@ -9,12 +9,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class UserInteract {
-    private MikeCli cli;
     private String[] args;
     private BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 
     public UserInteract(String params) {
-        cli = new MikeCli();
         args = params.split(" ");
     }
 
@@ -22,16 +20,24 @@ public class UserInteract {
         try {
             args = input.readLine().split(" ");
 
-            if (isMikeCommand(args[0])) {
-                cli.executeCommand(args);
-                init();
-            } else {
+            if ( !MikeCommandParser.isMikeCommand(args[0]) ) {
                 System.out.println("Incorrect command.");
-                System.out.print("Please use: m1ke [");
                 printAvailableCommands();
-                System.out.println("]");
                 init();
             }
+
+	        if ( !(args.length >= 2 && MikeCommandParser.isValidCommand(args[1])) ) {
+		        throw new MikeParseException("Command could not be found");
+	        }
+
+	        if ( !MikeCommandParser.isCommandParamsValid(args) ) {
+		        throw new MikeParseException("Wrong command parameters");
+	        }
+
+	        Mike mike = new Mike();
+	        mike.executeCommand(args);
+
+	        init();
         } catch (IOException e) {
             System.out.println("input error");
             init();
@@ -39,19 +45,14 @@ public class UserInteract {
             System.out.println(e.getMessage());
             init();
         }
-
     }
 
     private void printAvailableCommands() {
+	    System.out.print("Please use: m1ke [");
         for (MikeCommand command: MikeCommand.values()) {
             System.out.print(command + ", ");
         }
+	    System.out.println("]");
     }
-
-    private boolean isMikeCommand(String param) {
-        return "m1ke".equals(param);
-    }
-
-
 
 }
