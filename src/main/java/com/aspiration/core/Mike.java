@@ -36,7 +36,7 @@ public class Mike {
             // first time
             String m1keDir = DirectoryHandler.createMikeDir(workingDir);
             branchHandler.setWorkingPath(workingDir);
-            branchHandler.createBranch("master");
+            branchHandler.createBranch(workingDir, "master");
 
             System.out.println();
             System.out.println("m1ke found there was no branch here");

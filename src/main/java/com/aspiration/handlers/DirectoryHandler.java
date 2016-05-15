@@ -2,7 +2,7 @@ package com.aspiration.handlers;
 
 import lombok.extern.log4j.Log4j;
 
-import java.io.File;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -91,6 +91,37 @@ public class DirectoryHandler {
 			return path;
 		} else {
 			return path + separator;
+		}
+	}
+
+	public static void copyFolder(File source, File destination) throws IOException{
+		if (source.isDirectory()) {
+			if (!destination.exists()) {
+				destination.mkdir();
+				System.out.println("Directory copied from " + source + "  to " + destination);
+			}
+
+			String files[] = source.list();
+			for (String file : files) {
+				File srcFile = new File(source, file);
+				File destFile = new File(destination, file);
+				if (!exceptionDir.equals(srcFile.getName())) {
+					copyFolder(srcFile, destFile);
+				}
+			}
+		} else {
+			InputStream in = new FileInputStream(source);
+			OutputStream out = new FileOutputStream(destination);
+
+			byte[] buffer = new byte[1024];
+			int length;
+			while ((length = in.read(buffer)) > 0) {
+				out.write(buffer, 0, length);
+			}
+
+			in.close();
+			out.close();
+			System.out.println("File copied from " + source + " to " + destination);
 		}
 	}
 }

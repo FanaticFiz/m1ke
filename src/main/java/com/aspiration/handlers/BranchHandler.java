@@ -3,6 +3,7 @@ package com.aspiration.handlers;
 import lombok.extern.log4j.Log4j;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 @Log4j
@@ -13,13 +14,6 @@ public class BranchHandler {
 
     public void save() {
         // ?
-    }
-
-    public void createBranch(String branchName) {
-	    String fullPath = DirectoryHandler.checkDirSeparator(workingPath + DirectoryHandler.exceptionDir) + branchName;
-	    log.debug("Create branch: " + fullPath);
-	    String dir = DirectoryHandler.createDir(fullPath);
-
     }
 
     public File getBranch(String branchName) {
@@ -71,5 +65,23 @@ public class BranchHandler {
 
 	public void setWorkingPath(String workingPath) {
 		this.workingPath = workingPath;
+	}
+
+	public void createBranch(String sourcePath, String branchName) {
+		String fullPath = DirectoryHandler.checkDirSeparator(workingPath + DirectoryHandler.exceptionDir) + branchName;
+		log.debug("Create branch: " + fullPath);
+		String destinationDir = DirectoryHandler.createDir(fullPath);
+
+		try {
+			DirectoryHandler.copyFolder(
+					new File(sourcePath),
+					new File(destinationDir));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void setBrenchAsCurrent(String branchName) {
+
 	}
 }
