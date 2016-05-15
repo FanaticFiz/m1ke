@@ -31,9 +31,9 @@ public class Mike {
         String fullPath = workingDir + ".m1ke";
 
         if (DirectoryHandler.isPathValid(fullPath)) {
-
+            // todo: Connect to exist active branch
         } else {
-            // first time
+            // First time
             String m1keDir = DirectoryHandler.createMikeDir(workingDir);
             branchHandler.setWorkingPath(workingDir);
             branchHandler.createBranch(workingDir, "master");

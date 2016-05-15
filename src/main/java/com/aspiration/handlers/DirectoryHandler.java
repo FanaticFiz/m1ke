@@ -98,7 +98,7 @@ public class DirectoryHandler {
 		if (source.isDirectory()) {
 			if (!destination.exists()) {
 				destination.mkdir();
-				System.out.println("Directory copied from " + source + "  to " + destination);
+				log.debug("Directory copied from " + source + "  to " + destination);
 			}
 
 			String files[] = source.list();
@@ -121,7 +121,7 @@ public class DirectoryHandler {
 
 			in.close();
 			out.close();
-			System.out.println("File copied from " + source + " to " + destination);
+			log.debug("File copied from " + source + " to " + destination);
 		}
 	}
 }
