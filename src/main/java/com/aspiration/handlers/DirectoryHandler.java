@@ -80,4 +80,8 @@ public class DirectoryHandler {
 		log.debug("Try create '.m1ke' directory by: " + path);
 		return createDir(path + exceptionDir);
 	}
+
+	public static boolean removeDir(String path) {
+		return new File(path).delete();
+	}
 }
