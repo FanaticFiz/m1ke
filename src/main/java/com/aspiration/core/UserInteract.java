@@ -18,7 +18,7 @@ public class UserInteract {
     }
 
     public void init() {
-	    printWorfDir();
+		printWorkDir();
 
         try {
             args = input.readLine().split(" ");
@@ -49,10 +49,10 @@ public class UserInteract {
         }
     }
 
-	private void printWorfDir() {
+	private void printWorkDir() {
 		if (mike.getWorkingDir() != null) {
 			System.err.print(">" + mike.getWorkingDir() + " ");
-				}
+		}
 	}
 
 	private void printAvailableCommands() {

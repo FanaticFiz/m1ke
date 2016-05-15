@@ -28,7 +28,7 @@ public class Mike {
 
     private void integrate(String path) {
         workingDir = DirectoryHandler.checkDirSeparator(path);
-        String fullPath = DirectoryHandler.checkDirSeparator(workingDir) + ".m1ke";
+        String fullPath = workingDir + ".m1ke";
 
         if (DirectoryHandler.isPathValid(fullPath)) {
 
