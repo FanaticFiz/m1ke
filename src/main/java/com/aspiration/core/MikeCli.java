@@ -38,7 +38,7 @@ public class MikeCli {
     }
 
     private boolean isOption(String token) {
-        return token.startsWith("-") && token.length() >= 2; //&& options.hasShortOption(token.substring(1, 2));
+        return token.startsWith("-") && token.length() >= 2;
     }
 
     private boolean isCommandParamsValid() {
