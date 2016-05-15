@@ -5,12 +5,12 @@ import com.aspiration.handlers.DirectoryHandler;
 
 public class MikeCommandParser {
 
-    public static boolean isMikeCommand(String param) {
-        return "m1ke".equals(param);
+    public static boolean isMikeCommand(String[] args) {
+        return args.length >= 1 && "m1ke".equals(args[0]);
     }
 
-    public static boolean isValidCommand(String command) {
-        return MikeCommand.containsCommand(command);
+    public static boolean isValidCommand(String[] args) {
+        return args.length >= 2 && MikeCommand.containsCommand(args[1]);
     }
 
     public boolean isOption(String token) {

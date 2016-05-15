@@ -16,12 +16,12 @@ public class Mike {
 
         command = MikeCommand.getCommand(commandLineArgs[1]);
         switch (command) {
-            case INTEGRATE:        integrate(commandLineArgs[2]);  break;
-            case SAVE:             save();              break;
-            case CREATE_BRANCH:    createBranch();      break;
-            case GET_BRANCH:       getBranch();         break;
-            case REMOVE_BRANCH:    removeBranch();      break;
-            case QUIT:             System.exit(0);      break;
+            case INTEGRATE:        integrate(commandLineArgs[2]);       break;
+            case SAVE:             save();                              break;
+            case CREATE_BRANCH:    createBranch();                      break;
+            case GET_BRANCH:       getBranch();                         break;
+            case REMOVE_BRANCH:    removeBranch(commandLineArgs[2]);    break;
+            case QUIT:             System.exit(0);                      break;
         }
     }
 
@@ -33,8 +33,17 @@ public class Mike {
             String m1keDir = DirectoryHandler.createMikeDir(path);
             branchHandler.setWorkingPath(path);
             branchHandler.createBranch("master");
+
+            System.out.println("m1ke found there was no branch here");
+            System.out.println("'master' branch created and choosed");
         }
 
+    }
+
+    private void removeBranch(String branchName) {
+        String dirPath = "";
+        DirectoryHandler.isPathValid(dirPath);
+        branchHandler.removeBranch(dirPath);
     }
 
     private void save() {
@@ -46,8 +55,6 @@ public class Mike {
     private void getBranch() {
         System.out.println("m1ke getBranch command executing...");
     }
-    private void removeBranch() {
-        System.out.println("m1ke removeBranch command executing...");
-    }
+
 
 }

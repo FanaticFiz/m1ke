@@ -20,13 +20,13 @@ public class UserInteract {
         try {
             args = input.readLine().split(" ");
 
-            if ( !MikeCommandParser.isMikeCommand(args[0]) ) {
+            if ( !MikeCommandParser.isMikeCommand(args) ) {
                 System.out.println("Incorrect command.");
                 printAvailableCommands();
                 init();
             }
 
-	        if ( !(args.length >= 2 && MikeCommandParser.isValidCommand(args[1])) ) {
+	        if ( !MikeCommandParser.isValidCommand(args) ) {
 		        throw new MikeParseException("Command could not be found");
 	        }
 
