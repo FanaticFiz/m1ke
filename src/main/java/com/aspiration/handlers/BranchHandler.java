@@ -16,7 +16,7 @@ public class BranchHandler {
     }
 
     public void createBranch(String branchName) {
-	    String fullPath = checkDirSeparator(workingPath + DirectoryHandler.exceptionDir) + branchName;
+	    String fullPath = DirectoryHandler.checkDirSeparator(workingPath + DirectoryHandler.exceptionDir) + branchName;
 	    log.debug("Create branch: " + fullPath);
 	    String dir = DirectoryHandler.createDir(fullPath);
 
@@ -32,8 +32,8 @@ public class BranchHandler {
         return null;
     }
 
-    public boolean removeBranch(String branchName) {
-        return DirectoryHandler.removeDir(branchName);
+    public boolean removeBranch(String fullPath) {
+        return DirectoryHandler.removeDir(fullPath);
     }
 
     public void findAll(String path) {
@@ -63,15 +63,6 @@ public class BranchHandler {
         }
 
         return branchDirectories.contains(branchName);
-    }
-
-    private String checkDirSeparator(String path) {
-        String separator = File.separator;
-        if (path.endsWith(separator)) {
-            return path;
-        } else {
-            return path + separator;
-        }
     }
 
     public List<File> getBranchDirectories() {

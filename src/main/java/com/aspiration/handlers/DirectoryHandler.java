@@ -8,8 +8,8 @@ import java.util.List;
 
 @Log4j
 public class DirectoryHandler {
+	public static String exceptionDir = ".m1ke";
 	private List<String> foundFiles = new ArrayList<>();
-	static String exceptionDir = ".m1ke";
 
 	public List<String> findAllFiles(String path) {
 		log.debug("Try find files in: " + path);
@@ -61,7 +61,7 @@ public class DirectoryHandler {
 	}
 
 	public static boolean isPathValid(String path) {
-		return new File(path).exists();
+		return new File(checkDirSeparator(path)).exists();
 	}
 
 	public static String createDir(String path) {
@@ -83,5 +83,14 @@ public class DirectoryHandler {
 
 	public static boolean removeDir(String path) {
 		return new File(path).delete();
+	}
+
+	public static String checkDirSeparator(String path) {
+		String separator = File.separator;
+		if (path.endsWith(separator)) {
+			return path;
+		} else {
+			return path + separator;
+		}
 	}
 }

@@ -25,15 +25,19 @@ public class MikeCommandParser {
             return true;
         }
 
-        if (command == MikeCommand.REMOVE_BRANCH
-                && args.length >= 3
-                && DirectoryHandler.isPathValid(args[2])
-                && args[2].contains(".m1ke")) {
+        if (command == MikeCommand.REMOVE_BRANCH && args.length >= 3) {
             return true;
         }
 
-        if (command == MikeCommand.QUIT) return true;
-        return false;
+        if (command == MikeCommand.CREATE_BRANCH) {
+            return true;
+        }
+
+        if (command == MikeCommand.GET_BRANCH) {
+            return true;
+        }
+
+        return command == MikeCommand.SAVE || command == MikeCommand.QUIT;
     }
 
 }
